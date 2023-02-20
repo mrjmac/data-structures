@@ -107,7 +107,7 @@ public class bst {
     
     private boolean isFull(node tree)
     {
-        return getNumNodes() == Math.pow(2, getNumLevels()) - 1;
+        return getNumNodes(tree) == Math.pow(2, getNumLevels(tree)) - 1;
     }
     
     public boolean isComplete()
@@ -115,7 +115,7 @@ public class bst {
         return isComplete(root);
     }
     
-    private boolean isComplete(node tree)
+    public boolean isComplete(node tree)
     {
         if(getNumNodes() == Math.pow(2, getNumLevels()) - 1)
         {
@@ -125,7 +125,11 @@ public class bst {
         {
             if (tree != null)
             {
-               if (tree.getLeft() == null && tree.getRight() != null)
+                if (getNumNodes(tree.getRight()) > 1 && !isFull(tree.getLeft()))
+                {
+                    return false;
+                }
+                if (tree.getLeft() == null && tree.getRight() != null)
                 {
                     return false;
                 }
