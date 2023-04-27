@@ -1,4 +1,4 @@
-public class bst {
+public class bst<T> {
 
     private node root;
 
@@ -7,19 +7,19 @@ public class bst {
         this.root = null;
     }
 
-    public void add(int value)
+    public void add(T value)
     {
         root = add(value, root);
     }
 
-    private node add(int value, node tree)
+    private node add(T value, node tree)
     {
         if (tree == null)
         {
             return new node(value, null, null);
         }
 
-        if (value < tree.getValue())
+        if (((node) value).compareTo(tree.getValue()) < 0)
         {
             tree.setLeft(add(value, tree.getLeft()));
         }
@@ -191,23 +191,23 @@ public class bst {
     
 }
 
-class node {
+class node<T> implements Comparable<T> {
 
-    private int value;
+    private T value;
     private node left;
     private node right;
 
-    public node(int value, node left, node right) {
+    public node(T value, node left, node right) {
         this.value = value;
         this.left = left;
         this.right = right;
     }
 
-    public int getValue() {
+    public T getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(T value) {
         this.value = value;
     }
 
@@ -225,5 +225,11 @@ class node {
 
     public void setRight(node right) {
         this.right = right;
+    }
+
+    @Override
+    public int compareTo(T arg0) {
+        //implement compareTo for whatever generic you want to use
+        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
     }
 }
