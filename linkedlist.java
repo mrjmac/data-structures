@@ -1,4 +1,5 @@
-public class linkedlist {
+public class linkedlist<T> {
+
     private node head;
 
     public linkedlist() 
@@ -6,7 +7,7 @@ public class linkedlist {
         this.head = null;
     }
     
-    public int get(int index)
+    public T get(int index) throws Exception
     {
         int currIndex = 0;
         int size = size() - 1;
@@ -14,7 +15,7 @@ public class linkedlist {
         
         if (index > size || index < 0)
         {
-            return -1;
+            throw new Exception("Out of bounds");
         }
         
         while (currIndex != index)
@@ -23,7 +24,7 @@ public class linkedlist {
             currIndex++;
         }
         
-        return temp.getValue();
+        return (T) temp.getValue();
     }
     
     public node head()
@@ -53,7 +54,7 @@ public class linkedlist {
         }
     }
     
-    public void remove(int value)
+    public void remove(T value)
     {
         int size = size() - 1, currIndex = 0;
         if (head != null)
@@ -86,7 +87,7 @@ public class linkedlist {
         }
     }
     
-    public void add(int value)
+    public void add(T value)
     {
         // Adds the value to the end of the list
         if (head == null)
@@ -104,7 +105,7 @@ public class linkedlist {
         }
     }
     
-    public void insert(int index, int value)
+    public void insert(int index, T value)
     {
         int size = size() - 1, currIndex = 0;
         if (head == null && index == 0)
@@ -181,21 +182,21 @@ public class linkedlist {
     
 }
 
-class node {
+class node<T> {
     
-    private Integer value;
+    private T value;
     private node next;
 
-    public node(Integer value, node next) {
+    public node(T value, node next) {
         this.value = value;
         this.next = next;
     }
 
-    public Integer getValue() {
+    public T getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(T value) {
         this.value = value;
     }
 
